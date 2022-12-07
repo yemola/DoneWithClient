@@ -7,8 +7,7 @@ import defaultStyles from "../config/styles";
 import ErrorMessage from "./forms/ErrorMessage";
 
 function PasswordInput({ icon, name, width = "100%", ...otherProps }) {
-  const { setFieldTouched, setFieldValue, errors, touched, values } =
-    useFormikContext();
+  const { errors, handleChange, touched, setFieldTouched } = useFormikContext();
   const [passwordVisible, setPasswordVisible] = useState(true);
   let iconName = passwordVisible ? "eye" : "eye-off";
 
@@ -19,16 +18,14 @@ function PasswordInput({ icon, name, width = "100%", ...otherProps }) {
           {icon && (
             <MaterialCommunityIcons
               name={icon}
-              onChangeText={(text) => setFieldValue(text)}
               size={20}
               color={defaultStyles.colors.medium}
               style={styles.icon}
             />
           )}
           <TextInput
-            onBlur={() => setFieldTouched(name)}
-            onChangeText={(text) => setFieldValue(name, text)}
-            value={values[name]}
+            onBlur={() => setFieldTouched("password")}
+            onChangeText={handleChange("password")}
             placeholderTextColor={defaultStyles.colors.medium}
             style={defaultStyles.text}
             secureTextEntry={passwordVisible}
@@ -43,8 +40,7 @@ function PasswordInput({ icon, name, width = "100%", ...otherProps }) {
           color="#232323"
         />
       </View>
-
-      <ErrorMessage error={errors[name]} visible={touched.password} />
+      <ErrorMessage error={errors.password} visible={touched.password} />
     </>
   );
 }
@@ -65,3 +61,12 @@ const styles = StyleSheet.create({
 });
 
 export default PasswordInput;
+
+// eyeball={() => (
+//   <MaterialCommunityIcons
+//     name={iconName}
+//     onPress={() => setPasswordVisible(!passwordVisible)}
+//     size={22}
+//     color="#232323"
+//   />
+// )}

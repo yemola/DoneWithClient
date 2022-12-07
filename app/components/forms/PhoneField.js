@@ -1,16 +1,16 @@
 import React from "react";
 import { useFormikContext } from "formik";
 
-import TextInput from "../TextInput";
+import PhoneNumInput from "../PhoneNumInput";
 import ErrorMessage from "./ErrorMessage";
 
-function AppFormField({ name, width, ...otherProps }) {
+function PhoneField({ name, width, ...otherProps }) {
   const { setFieldTouched, setFieldValue, errors, touched, values } =
     useFormikContext();
 
   return (
     <>
-      <TextInput
+      <PhoneNumInput
         onBlur={() => setFieldTouched(name)}
         onChangeText={(text) => setFieldValue(name, text)}
         value={values[name]}
@@ -22,4 +22,4 @@ function AppFormField({ name, width, ...otherProps }) {
   );
 }
 
-export default AppFormField;
+export default PhoneField;

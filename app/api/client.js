@@ -5,6 +5,8 @@ import settings from "../config/settings";
 
 const apiClient = create({
   baseURL: settings.apiUrl,
+  timeout: 20000,
+  headers: { Accept: "application/vnd.github.v3+json" },
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {
@@ -20,7 +22,7 @@ apiClient.get = async (url, params, axiosConfig) => {
   if (response.ok) {
     cache.store(url, response.data);
     return response;
-  } else console.log(response.problem);
+  } else alert(response.problem);
 
   const data = await cache.get(url);
   return data ? { ok: true, data } : response;

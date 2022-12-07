@@ -10,7 +10,7 @@ function SearchBox({ searchPhrase, setSearchPhrase }) {
       <View style={styles.wrap}>
         <MaterialCommunityIcons
           name="text-search"
-          size={20}
+          size={18}
           color={defaultStyles.colors.medium}
           style={styles.icon}
         />
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 10,
+    padding: 6,
     marginVertical: 8,
     width: "100%",
   },

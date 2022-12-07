@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet } from "react-native";
 
-import logger from "../utility/logger";
+import messagesApi from "../api/messages";
+import useAuth from "../auth/useAuth";
+import useApi from "../hooks/useApi";
 
 import Screen from "../components/Screen";
 import {
@@ -10,42 +12,56 @@ import {
   ListItemSeparator,
 } from "../components/lists";
 
-const initialMessages = [
-  {
-    id: 1,
-    title: "Mosh Hamedani",
-    description: "Hey! Is this item still available?",
-    image: require("../assets/mosh.jpg"),
-  },
-  {
-    id: 2,
-    title: "Mosh Hamedani",
-    description:
-      "I'm interested in this item. When will you be able to post it?",
-    image: require("../assets/mosh.jpg"),
-  },
-];
+// const initialMessages = [
+//   {
+//     id: 1,
+//     title: "Mosh Hamedani",
+//     description: "Hey! Is this item still available?",
+//     image: require("../assets/mosh.jpg"),
+//   },
+//   {
+//     id: 2,
+//     title: "Mosh Hamedani",
+//     description:
+//       "I'm interested in this item. When will you be able to post it?",
+//     image: require("../assets/mosh.jpg"),
+//   },
+// ];
 
 function MessagesScreen(props) {
-  const [messages, setMessages] = useState(initialMessages);
+  // const [messages, setMessages] = useState(initialMessages);
+
   const [refreshing, setRefreshing] = useState(false);
+  const { user } = useAuth();
+  const userId = user.userId;
+
+  const getMessagesApi = useApi(messagesApi.getChats);
+
+  const allMessages = getMessagesApi.data;
+
+  const myMessages = allMessages.filter(
+    (m) => (m.toUserId || m.fromUserId) === userId
+  );
 
   const handleDelete = (message) => {
     // Delete the message from messages
-    setMessages(messages.filter((m) => m.id !== message.id));
+    setMessages(myMessages.filter((m) => m._id !== message._id));
   };
+
+  useEffect(() => {
+    getMessagesApi.request();
+  }, []);
 
   return (
     <Screen>
       <FlatList
-        data={messages}
-        keyExtractor={(message) => message.id.toString()}
+        data={myMessages}
+        keyExtractor={(message) => message._id.toString()}
         renderItem={({ item }) => (
           <ListItem
             title={item.title}
             subTitle={item.description}
-            image={item.image}
-            onPress={() => logger.log("Message selected", item)}
+            image={item.userImg}
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}
@@ -54,14 +70,8 @@ function MessagesScreen(props) {
         ItemSeparatorComponent={ListItemSeparator}
         refreshing={refreshing}
         onRefresh={() => {
-          setMessages([
-            {
-              id: 2,
-              title: "T2",
-              description: "D2",
-              image: require("../assets/mosh.jpg"),
-            },
-          ]);
+          setRefreshing(true);
+          getMessagesApi.request();
         }}
       />
     </Screen>

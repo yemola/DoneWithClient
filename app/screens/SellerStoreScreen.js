@@ -10,12 +10,18 @@ import routes from "../navigation/routes";
 import Screen from "../components/Screen";
 import AppText from "../components/Text";
 import useApi from "../hooks/useApi";
+import useAuth from "../auth/useAuth";
 import SearchBox from "../components/SearchBox";
 
-function ListingsScreen({ navigation }) {
+function SellerStoreScreen({ navigation, route }) {
+  const { user } = useAuth();
+  const userItem = route.params;
   const getListingsApi = useApi(listingsApi.getListings);
 
   const allData = getListingsApi.data;
+  const userListings = allData.filter(
+    (listings) => listings.userId === userItem.userId
+  );
   const [refreshing, setRefreshing] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState("");
 
@@ -69,7 +75,7 @@ function ListingsScreen({ navigation }) {
         )}
 
         <FlatList
-          data={allData}
+          data={userListings}
           keyExtractor={(listing) => listing._id}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem}
@@ -92,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListingsScreen;
+export default SellerStoreScreen;

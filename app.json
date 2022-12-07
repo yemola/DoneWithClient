@@ -3,7 +3,7 @@
     "name": "DoneWithIt",
     "slug": "DoneWithIt",
     "privacy": "unlisted",
-    "version": "1.0.0",
+    "version": "6.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
@@ -13,38 +13,51 @@
       "backgroundColor": "#e63c4b"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/90a2ff3d-324a-481b-a46b-b57a528ab49d"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.laflosd.donewithit",
       "buildNumber": "1.0.0"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "package": "com.laflosd.donewithit",
-      "versionCode": 3
-      
+      "versionCode": 6
     },
     "description": "A marketplace for selling the stuff you don't need anymore.",
     "notification": {
       "iosDisplayInForeground": true
     },
-    "extra": {
-      "bugsnag": {
-        "apiKey": "fc95bc335afa2ff6f60c26fe5b386e6f"
-      }
+    "web": {
+      "favicon": "./app/assets/favicon.png"
     },
     "hooks": {
       "postPublish": [
         {
-          "file": "@bugsnag/expo/hooks/post-publish.js",
-          "config": {}
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "laflo-software-development",
+            "project": "testdonewith",
+            "authToken": "e1d9681f58314cb8b17f58aac9c8b92b3662faed42f34106996d03ee25ffda91"
+          }
         }
       ]
     },
-    "web": {
-      "favicon": "./app/assets/favicon.png"
+    "plugins": [
+      "sentry-expo"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "90a2ff3d-324a-481b-a46b-b57a528ab49d"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

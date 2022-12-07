@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 
 import {
@@ -8,16 +8,19 @@ import {
   FormPicker as Picker,
   SubmitButton,
 } from "../components/forms";
+import AppText from "../components/Text";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import Screen from "../components/Screen";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import listingsApi from "../api/listings";
 import useLocation from "../hooks/useLocation";
+import useAuth from "../auth/useAuth";
+import useApi from "../hooks/useApi";
 import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
-  price: Yup.number().required().min(1).max(10000).label("Price"),
+  price: Yup.string().required().min(1).label("Price"),
   description: Yup.string().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
   images: Yup.array().min(1, "Please select at least one image."),
@@ -26,32 +29,32 @@ const validationSchema = Yup.object().shape({
 const categories = [
   {
     backgroundColor: "#fc5c65",
-    icon: "floor-lamp",
+    icon: "sofa-single-outline",
     label: "Furniture",
     value: 1,
   },
   {
     backgroundColor: "#fd9644",
     icon: "car",
-    label: "Cars",
+    label: "Automobile",
     value: 2,
   },
   {
     backgroundColor: "#fed330",
-    icon: "camera",
-    label: "Cameras",
+    icon: "tablet-cellphone",
+    label: "Phones/Tabs",
     value: 3,
   },
   {
     backgroundColor: "#26de81",
-    icon: "cards",
-    label: "Games",
+    icon: "blender",
+    label: "Electronics",
     value: 4,
   },
   {
     backgroundColor: "#2bcbba",
     icon: "shoe-heel",
-    label: "Clothing",
+    label: "Fashion",
     value: 5,
   },
   {
@@ -62,14 +65,14 @@ const categories = [
   },
   {
     backgroundColor: "#4b7bec",
-    icon: "headphones",
-    label: "Movies & Music",
+    icon: "home-outline",
+    label: "Houses & Apartment",
     value: 7,
   },
   {
     backgroundColor: "#a55eea",
-    icon: "book-open-variant",
-    label: "Books",
+    icon: "desktop-mac",
+    label: "Computing",
     value: 8,
   },
   {
@@ -81,6 +84,9 @@ const categories = [
 ];
 
 function ListingEditScreen() {
+  const { user } = useAuth();
+
+  const { image, userId, username, state, country, whatsapp } = user;
   const location = useLocation();
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -89,10 +95,18 @@ function ListingEditScreen() {
     setProgress(0);
     setUploadVisible(true);
     const result = await listingsApi.addListing(
-      { ...listing, location },
+      {
+        ...listing,
+        location,
+        userId,
+        username,
+        state,
+        country,
+        image,
+        whatsapp,
+      },
       (progress) => setProgress(progress)
     );
-
     if (!result.ok) {
       setUploadVisible(false);
       return alert("Could not save the listing");
@@ -104,6 +118,7 @@ function ListingEditScreen() {
   return (
     <ScrollView>
       <Screen style={styles.container}>
+        <AppText style={styles.heading}>Post An Item for Sale</AppText>
         <UploadScreen
           onDone={() => setUploadVisible(false)}
           progress={progress}
@@ -121,9 +136,12 @@ function ListingEditScreen() {
           validationSchema={validationSchema}
         >
           <FormImagePicker name="images" />
+
           <FormField maxLength={255} name="title" placeholder="Title" />
+          <AppText style={styles.priceLabel}>
+            Enter price with your preferred currency
+          </AppText>
           <FormField
-            keyboardType="numeric"
             maxLength={12}
             name="price"
             placeholder="Price"
@@ -146,6 +164,9 @@ function ListingEditScreen() {
           />
           <SubmitButton title="Post" />
         </Form>
+        <AppText style={styles.text}>
+          To view posted item on listings page, pull down to refresh
+        </AppText>
       </Screen>
     </ScrollView>
   );
@@ -154,6 +175,19 @@ function ListingEditScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: "500",
+    paddingVertical: 15,
+  },
+  priceLabel: {
+    fontSize: 12,
+  },
+  text: {
+    fontSize: 13,
+    alignSelf: "center",
+    marginTop: 20,
   },
 });
 export default ListingEditScreen;

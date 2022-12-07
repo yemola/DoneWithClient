@@ -1,3 +1,4 @@
+import * as Sentry from "sentry-expo";
 import React, { useEffect } from "react";
 import {
   View,
@@ -8,7 +9,6 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import logger from "../utility/logger";
 
 import colors from "../config/colors";
 
@@ -39,7 +39,7 @@ function ImageInput({ imageUri, onChangeImage }) {
       });
       if (!result.cancelled) onChangeImage(result.uri);
     } catch (error) {
-      logger.log("Error reading an image", error);
+      Sentry.Native.captureException("Error reading an image", error);
     }
   };
 

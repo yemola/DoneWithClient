@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg9"
+   width="1656"
+   height="3248"
+   viewBox="0 0 1656 3248"
+   sodipodi:docname="splash.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs13">
+    <rect
+       x="-1406.2769"
+       y="1706.0923"
+       width="364.06154"
+       height="178.46154"
+       id="rect63526" />
+    <rect
+       x="-1392"
+       y="1713.2308"
+       width="299.81538"
+       height="192.73846"
+       id="rect59616" />
+    <rect
+       x="556.8"
+       y="1263.5077"
+       width="364.06154"
+       height="107.07692"
+       id="rect12944" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.125"
+     inkscape:cx="748"
+     inkscape:cy="1520"
+     inkscape:window-width="1281"
+     inkscape:window-height="728"
+     inkscape:window-x="-32000"
+     inkscape:window-y="-32000"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g15" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g15">
+    <rect
+       style="fill:#e6454f;fill-opacity:1;fill-rule:evenodd;stroke:#ff29ff;stroke-width:4.0252"
+       id="rect8935"
+       width="1670.4"
+       height="3240.8616"
+       x="0"
+       y="0"
+       rx="4.6967402"
+       ry="4.6967402"
+       inkscape:export-filename="C:\Users\Hp\Desktop\reactDemo\Done\app\assets\splash1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       id="text12942"
+       style="font-size:192px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect12944);fill:#ffffff"><tspan
+         x="556.80078"
+         y="1545.7514"
+         id="tspan16636">J</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:751.578px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#f9f9f9;stroke-width:1"
+       x="454.36331"
+       y="1784.7458"
+       id="text39978"
+       transform="scale(0.99975076,1.0002493)"><tspan
+         sodipodi:role="line"
+         id="tspan39976"
+         x="454.36331"
+         y="1784.7458"
+         style="stroke-width:1">J</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text59614"
+       style="font-size:64px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect59616);fill:#f9f9f9;stroke-width:0.255463"
+       transform="matrix(3.9134939,0,0,3.9154453,6222.4988,-5393.5671)"><tspan
+         x="-1392"
+         y="1771.6196"
+         id="tspan16638">eje</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text63524"
+       style="font-size:53.3333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect63526);fill:#f2f2f2"
+       transform="translate(1971.9077,-305.23077)" />
+    <text
+       xml:space="preserve"
+       style="font-size:208.771px;line-height:1.25;font-family:sans-serif;fill:#f9f9f9;stroke-width:1"
+       x="761.98022"
+       y="1771.4973"
+       id="text78384"
+       transform="scale(0.99975076,1.0002493)"><tspan
+         sodipodi:role="line"
+         id="tspan78382"
+         x="761.98022"
+         y="1771.4973"
+         style="stroke-width:1">Sale</tspan></text>
+  </g>
+</svg>

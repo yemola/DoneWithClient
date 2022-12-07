@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14696584765",
+    "project_id": "donewith-849ec",
+    "storage_bucket": "donewith-849ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14696584765:android:1dd9aaa60508a2a4277c54",
+        "android_client_info": {
+          "package_name": "com.laflosd.donewithit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14696584765-uvdhvif9rcuop3446kraq6le0o4k7lei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ-MZSs6pZ_blq_FKr6A1i2eyejlPcARM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14696584765-uvdhvif9rcuop3446kraq6le0o4k7lei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

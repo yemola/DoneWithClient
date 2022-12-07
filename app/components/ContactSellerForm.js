@@ -5,16 +5,14 @@ import * as Yup from "yup";
 
 import { Form, FormField, SubmitButton } from "./forms";
 import messagesApi from "../api/messages";
-import logger from "../utility/logger";
 
 function ContactSellerForm({ listing }) {
   const handleSubmit = async ({ message }, { resetForm }) => {
     Keyboard.dismiss();
-
-    const result = await messagesApi.send(message, listing.id);
+    const listingId = listing._id;
+    const result = await messagesApi.send(message, listingId);
 
     if (!result.ok) {
-      logger.log("Error", result);
       return Alert.alert("Error", "Could not send the message to the seller.");
     }
 

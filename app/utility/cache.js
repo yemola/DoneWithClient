@@ -1,7 +1,6 @@
+import * as Sentry from "sentry-expo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import dayjs from "dayjs";
-
-import logger from "./logger";
 
 const prefix = "cache";
 const expiryInMinutes = 5;
@@ -39,7 +38,7 @@ const get = async (key) => {
 
     return item.value;
   } catch (error) {
-    logger.log(error);
+    Sentry.Native.captureException(error);
   }
 };
 

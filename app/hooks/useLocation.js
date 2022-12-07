@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import * as Location from "expo-location";
-
-import logger from "../utility/logger";
+import * as Sentry from "sentry-expo";
 
 export default useLocation = () => {
   const [location, setLocation] = useState();
@@ -17,7 +16,7 @@ export default useLocation = () => {
         setLocation({ latitude, longitude });
       } else return;
     } catch (error) {
-      logger.log(error);
+      Sentry.Native.captureException(error);
     }
   };
 

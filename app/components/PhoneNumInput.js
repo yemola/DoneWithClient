@@ -1,10 +1,12 @@
-import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import React, { useRef } from "react";
+import { View, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import PhoneInput from "react-native-phone-number-input";
 
 import defaultStyles from "../config/styles";
 
-function AppTextInput({ icon, width = "100%", ...otherProps }) {
+function PhoneNumInput({ icon, width = "100%", ...otherProps }) {
+  const phoneInput = useRef < PhoneInput > null;
   return (
     <View style={[styles.container, { width }]}>
       {icon && (
@@ -15,7 +17,8 @@ function AppTextInput({ icon, width = "100%", ...otherProps }) {
           style={styles.icon}
         />
       )}
-      <TextInput
+      <PhoneInput
+        ref={phoneInput}
         placeholderTextColor={defaultStyles.colors.medium}
         style={defaultStyles.text}
         {...otherProps}
@@ -27,7 +30,7 @@ function AppTextInput({ icon, width = "100%", ...otherProps }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultStyles.colors.light,
-    borderRadius: 5,
+    borderRadius: 25,
     flexDirection: "row",
     padding: 8,
     marginVertical: 8,
@@ -37,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppTextInput;
+export default PhoneNumInput;

@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import * as Sentry from "sentry-expo";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
-import { AppLoading } from "expo";
 
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
@@ -10,12 +10,18 @@ import AuthNavigator from "./app/navigation/AuthNavigator";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 import { navigationRef } from "./app/navigation/rootNavigation";
-import logger from "./app/utility/logger";
 
-logger.start();
+Sentry.init({
+  dsn: "https://c2e0a088f8224c9a854e8a30508b4503@o1128758.ingest.sentry.io/4504067615883264",
+  enableInExpoDevelopment: true,
+  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+});
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [user, setUser] = useState();
+
   const [isReady, setIsReady] = useState(false);
 
   const restoreUser = async () => {
@@ -61,5 +67,3 @@ export default function App() {
     </AuthContext.Provider>
   );
 }
-
-// {user ? <AppNavigator /> : <AuthNavigator />}
